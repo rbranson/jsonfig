@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name = "jsonfig",
-    version = "0.1.0",
+    version = "0.1.1",
     author = "Rick Branson",
     author_email = "rick@diodeware.com",
     url = "http://github.com/rbranson/jsconfig",

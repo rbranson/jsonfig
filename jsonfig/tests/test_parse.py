@@ -31,3 +31,20 @@ class TestJsonFileContentsParser(unittest.TestCase):
         p = JsonFileContentsParser(mock)
         self.assertRaises(ParseError, lambda: p.parsed)
 
+    def test_same_content_doesnt_reparse_using_hash_string(self):
+        data = '{ "foo": "bar" }'
+        struct = { "foo": "bar" }
+        mock = MockFileContents(data)
+        mock.hash_string = "foobar"
+
+        p = JsonFileContentsParser(mock)
+        self.assertEquals(struct, p.parsed)
+
+        mock.contents = '{ "bar": "foo" }'
+        self.assertEquals(struct, p.parsed)
+
+        mock.hash_string = "barfoo"
+        self.assertEquals({ "bar": "foo" }, p.parsed)
+         
+
+

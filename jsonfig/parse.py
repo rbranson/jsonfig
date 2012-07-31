@@ -18,6 +18,7 @@ class BaseFileContentsParser(object):
         # Try to only actually parse if the contents change
         if self._contents.hash_string != self._last_hash:
             self._parsed = self._parse(self._contents.contents)
+            self._last_hash = self._contents.hash_string 
 
         return self._parsed
 
